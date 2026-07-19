@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0f172a;
+  --ink-soft: #2e2e2e;
+  --ink-muted: #6a6a6a;
+  --ink-faint: #b8b8b8;
+  --border: #e2e8f0;
+  --border-soft: #f0f0ec;
+  --surface: #f6f6f3;
+  --surface-2: #efefeb;
+  --white: #ffffff;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+.brutal-heading {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+.token-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+}
+
+.hairline {
+  border-color: var(--border);
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ---- Hero profile-card mouse-light reveal ---- */
+@property --reveal-x {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+@property --reveal-y {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+@property --reveal-r {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+.reveal-gray {
+  filter: grayscale(1) saturate(0) brightness(0.86) contrast(1.02);
+  -webkit-mask-image: radial-gradient(
+    circle at var(--reveal-x) var(--reveal-y),
+    transparent 0px,
+    transparent calc(var(--reveal-r) * 0.62),
+    black var(--reveal-r)
+  );
+  mask-image: radial-gradient(
+    circle at var(--reveal-x) var(--reveal-y),
+    transparent 0px,
+    transparent calc(var(--reveal-r) * 0.62),
+    black var(--reveal-r)
+  );
+  transition: --reveal-r 550ms var(--ease);
+  will-change: mask-image, filter;
+  transform: translateZ(0);
+}
+
