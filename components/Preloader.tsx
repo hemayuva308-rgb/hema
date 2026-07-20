@@ -38,7 +38,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
     if (!ctx) return;
 
     let analyser: AnalyserNode | null = null;
-    let dataArray: Uint8Array<ArrayBuffer> | null = null;
+    let dataArray: Uint8Array | null = null;
     let audioCtx: AudioContext | null = null;
 
     const setupAnalyser = async () => {
