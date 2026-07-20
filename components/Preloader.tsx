@@ -53,7 +53,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
         analyser.fftSize = 128;
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
-        dataArray = new Uint8Array(analyser.frequencyBinCount) as Uint8Array<ArrayBuffer>;
+       dataArray = new Uint8Array(analyser.frequencyBinCount);
       } catch {
         // autoplay blocked fallback
       }
@@ -68,7 +68,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
       ctx.fillStyle = "#0f172a";
 
       if (analyser && dataArray) {
-        analyser.getByteFrequencyData(dataArray);
+   analyser.getByteFrequencyData(dataArray as Uint8Array<ArrayBuffer>);
       }
 
       const gap = width / barCount;
