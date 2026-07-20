@@ -13,7 +13,7 @@ export interface Service {
   category: string;
   title: string;
   priceDisplay: string; // exact string shown on the card, e.g. "₹3,999 – ₹4,999"
-  priceLabel: string; // "Starting at" | "Fixed Price" | "Custom Quote" | "Per Design" | "Per Resume"
+  priceLabel: string; // "Starting at" | "Fixed Price" | "Custom Quote" | "Per Design" | "Per Resume" | "Starts From"
   basePrice: number; // numeric value used for the calculator + counter animation
   description: string;
   features: string[];
@@ -247,10 +247,86 @@ export const SERVICES: Service[] = [
     ],
     addons: [
       { id: "cover-letter", label: "Cover Letter Design", price: 99 },
-      { id: "linkedin-opt", label: "LinkedIn Profile Optimisation", price: 199 },
+      { id: "linkedin-opt", label: "LinkedIn Profile Optimisation", price: 499 },
       { id: "rush-delivery", label: "24-hr Rush Delivery", price: 49 },
     ],
     timeline: { standard: "24 hrs", express: "6 hrs" },
+  },
+  {
+    id: "whatsapp-billing-software",
+    index: "11",
+    category: "Software Solutions",
+    title: "WhatsApp Billing Software",
+    priceDisplay: "₹10,000",
+    priceLabel: "Starts From",
+    basePrice: 10000,
+    description:
+      "Seamless WhatsApp-integrated billing software for automated invoices, receipts, and customer updates.",
+    features: [
+      "Automated WhatsApp Invoicing",
+      "Payment Gateway Integration",
+      "Customer Database Management",
+      "Sales & Revenue Reports",
+    ],
+    addons: [],
+    timeline: { standard: "3 - 5 days", express: "2 days" },
+  },
+  {
+    id: "business-automation",
+    index: "12",
+    category: "Enterprise Automation",
+    title: "Business Automation",
+    priceDisplay: "₹20,000",
+    priceLabel: "Starts From",
+    basePrice: 20000,
+    description:
+      "End-to-end workflow automation to streamline operations, eliminate repetitive tasks, and scale faster.",
+    features: [
+      "Custom Workflow Design",
+      "CRM & Tool Integrations",
+      "Automated Email & Task Triggers",
+      "Performance Dashboard",
+    ],
+    addons: [],
+    timeline: { standard: "5 - 7 days", express: "3 days" },
+  },
+  {
+    id: "ai-chatbot",
+    index: "13",
+    category: "AI Solutions",
+    title: "AI Chatbot",
+    priceDisplay: "₹25,000",
+    priceLabel: "Starts From",
+    basePrice: 25000,
+    description:
+      "Smart 24/7 AI chatbot trained on your business data to handle customer inquiries and lead generation.",
+    features: [
+      "Trained on Your Knowledge Base",
+      "Website & WhatsApp Integration",
+      "Multi-language Support",
+      "Lead Capture & Analytics",
+    ],
+    addons: [],
+    timeline: { standard: "3 - 5 days", express: "2 days" },
+  },
+  {
+    id: "ai-agents",
+    index: "14",
+    category: "AI Solutions",
+    title: "Autonomous AI Agents",
+    priceDisplay: "₹30,000",
+    priceLabel: "Starts From",
+    basePrice: 30000,
+    description:
+      "Advanced autonomous AI agents capable of handling complex multi-step workflows, research, and decisions.",
+    features: [
+      "Custom Task Execution",
+      "Autonomous Decision Making",
+      "API & Database Connectivity",
+      "High Scalability & Accuracy",
+    ],
+    addons: [],
+    timeline: { standard: "7 - 10 days", express: "4 days" },
   },
 ];
 

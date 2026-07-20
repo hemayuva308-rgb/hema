@@ -45,7 +45,7 @@ export default function ContactCTA() {
           {/* CTA BUTTON */}
           <div className="mb-10">
             <a
-              href="#book-call" 
+              href="https://wa.me/9941116919" 
               className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-xs sm:text-sm font-semibold text-black transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
               style={{ boxShadow: "0 16px 32px -8px rgba(255,255,255,0.1)" }}
             >
@@ -58,7 +58,7 @@ export default function ContactCTA() {
             
             {/* WHATSAPP */}
             <a 
-              href="#whatsapp" 
+              href="https://wa.me/9941116919" 
               className="group flex items-center justify-center w-10 h-10 rounded-full border border-white/10 text-white/40 bg-white/[0.01] hover:text-white hover:border-white/30 transition-all duration-300"
             >
               <MessageCircle size={16} />
@@ -66,7 +66,7 @@ export default function ContactCTA() {
 
             {/* INSTAGRAM */}
             <a 
-              href="#instagram" 
+              href="https://www.instagram.com/hema.dev_/" 
               className="group flex items-center justify-center w-10 h-10 rounded-full border border-white/10 text-white/40 bg-white/[0.01] hover:text-white hover:border-white/30 transition-all duration-300"
             >
               <Instagram size={16} />
@@ -74,11 +74,11 @@ export default function ContactCTA() {
 
             {/* EMAIL */}
             <a 
-              href="#email" 
-              className="group flex items-center justify-center w-10 h-10 rounded-full border border-white/10 text-white/40 bg-white/[0.01] hover:text-white hover:border-white/30 transition-all duration-300"
-            >
-              <Mail size={16} />
-            </a>
+  href="mailto:hema.dev2026@gmail.com" 
+  className="group flex items-center justify-center w-10 h-10 rounded-full border border-white/10 text-white/40 bg-white/[0.01] hover:text-white hover:border-white/30 transition-all duration-300"
+>
+  <Mail size={16} />
+</a>
 
           </div>
         </div>

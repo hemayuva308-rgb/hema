@@ -38,7 +38,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
     if (!ctx) return;
 
     let analyser: AnalyserNode | null = null;
-    let dataArray: Uint8Array | null = null;
+    let dataArray: Uint8Array<ArrayBuffer> | null = null;
     let audioCtx: AudioContext | null = null;
 
     const setupAnalyser = async () => {
@@ -53,7 +53,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
         analyser.fftSize = 128;
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
-        dataArray = new Uint8Array(analyser.frequencyBinCount);
+        dataArray = new Uint8Array(analyser.frequencyBinCount) as Uint8Array<ArrayBuffer>;
       } catch {
         // autoplay blocked fallback
       }

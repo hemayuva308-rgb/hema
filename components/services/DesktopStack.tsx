@@ -17,8 +17,6 @@ export default function DesktopStack({
   const wrapperRefs = useRef<Array<HTMLDivElement | null>>([]);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-  // Keep the latest callback in a ref so the GSAP setup effect below only
-  // ever runs once on mount, regardless of how often the parent re-renders.
   const onActiveChangeRef = useRef(onActiveChange);
   useEffect(() => {
     onActiveChangeRef.current = onActiveChange;
@@ -36,7 +34,7 @@ export default function DesktopStack({
         const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
 
         if (reduceMotion) {
-          gsap.set(cards, { opacity: 1, y: 0, scale: 1, rotate: 0, filter: "blur(0px)" });
+          gsap.set(cards, { opacity: 0, y: 0, scale: 1, rotate: 0, filter: "blur(0px)" });
           return;
         }
 
@@ -53,18 +51,21 @@ export default function DesktopStack({
               onEnter: () => onActiveChangeRef.current?.(i),
               onEnterBack: () => onActiveChangeRef.current?.(i),
             },
+            defaults: { force3D: true },
           });
 
+          // Card mela varum podhu mattum y & scale marum (blur, opacity overlap varadhu)
           tl.fromTo(
             card,
-            { y: 140, scale: 0.85, rotate: 3, opacity: 0, filter: "blur(16px)" },
-            { y: 0, scale: 1, rotate: 0, opacity: 1, filter: "blur(0px)", ease: "none", duration: 1 },
+            { y: 140, scale: 0.85, rotate: 3 },
+            { y: 0, scale: 1, rotate: 0, ease: "none", duration: 1 },
             0
           );
 
           const prevCard = cards[i - 1];
           if (prevCard) {
-            tl.to(prevCard, { scale: 0.94, y: -36, opacity: 0.45, ease: "none", duration: 1 }, 0);
+            // Previous card kku opacity குறைக்க கூடாது! Solid white ah pinnaadi irukkanum.
+            tl.to(prevCard, { scale: 0.94, y: -36, ease: "none", duration: 1 }, 0);
           }
         });
 
@@ -77,8 +78,6 @@ export default function DesktopStack({
     }, containerRef);
 
     return () => ctx.revert();
-    // Intentionally empty — refs are stable, and onActiveChange is read via ref.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -94,13 +93,18 @@ export default function DesktopStack({
             wrapperRefs.current[i] = el;
           }}
           className="sticky top-[16vh] flex h-[70vh] items-center"
-          style={{ zIndex: i + 1 }}
+          style={{ zIndex: i + 1, isolation: "isolate" }}
         >
           <div
             ref={(el) => {
               cardRefs.current[i] = el;
             }}
-            className="w-full will-change-transform"
+            className="w-full will-change-transform rounded-3xl bg-white"
+            style={{
+              isolation: "isolate",
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+            }}
           >
             <ServiceCard service={service} />
           </div>

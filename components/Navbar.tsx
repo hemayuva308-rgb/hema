@@ -58,13 +58,15 @@ export default function Navbar() {
           ))}
         </div>
 
-        <a
-          href="#contact"
-          className="hidden border px-4 py-2 text-[0.78rem] font-semibold text-ink transition-colors hover:bg-ink hover:text-white md:inline-block"
-          style={{ borderColor: "var(--ink)" }}
-        >
-          Book a Call
-        </a>
+       <a
+  href="https://wa.me/919941116919?text=Hello!%20I%20would%20like%20to%20book%20a%20call."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hidden border px-4 py-2 text-[0.78rem] font-semibold text-ink transition-colors hover:bg-ink hover:text-white md:inline-block"
+  style={{ borderColor: "var(--ink)" }}
+>
+  Book a Call
+</a>
 
         {/* mobile menu toggle — top right, mobile only */}
         <button
@@ -123,7 +125,7 @@ export default function Navbar() {
                 </motion.a>
               ))}
               <motion.a
-                href="#contact"
+                href="https://wa.me/919941116919?text=Hello!%20I%20would%20like%20to%20book%20a%20call."
                 onClick={handleLinkClick}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}

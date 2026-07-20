@@ -11,8 +11,6 @@ const springCfg = { stiffness: 220, damping: 22, mass: 0.6 };
 export default function ServiceCard({ service }: { service: Service }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // Mouse-follow tilt — isolated on its own motion.div so it never
-  // fights with any scroll-driven transform a parent applies.
   const mvX = useMotionValue(0.5);
   const mvY = useMotionValue(0.5);
   const rotateX = useSpring(useTransform(mvY, [0, 1], [3, -3]), springCfg);
@@ -48,13 +46,22 @@ export default function ServiceCard({ service }: { service: Service }) {
       onMouseLeave={handleLeave}
       whileHover={{ y: -8 }}
       transition={{ type: "spring", ...springCfg }}
-      style={{ borderColor: "var(--border)", rotateX, rotateY, transformPerspective: 1000 }}
-      className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border bg-white p-8 shadow-card md:p-10"
+      style={{
+        borderColor: "var(--border)",
+        rotateX,
+        rotateY,
+        transformPerspective: 1000,
+        backgroundColor: "#ffffff", // Solid white background (Opaque)
+        isolation: "isolate", // own stacking context — stops sibling cards bleeding through
+        backfaceVisibility: "hidden",
+        WebkitBackfaceVisibility: "hidden",
+      }}
+      className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-8 shadow-2xl md:p-10"
     >
       {/* animated border sweep on hover */}
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-0"
         style={{
           padding: 1,
           background: "conic-gradient(from 180deg, transparent, var(--ink-faint), transparent 30%)",
@@ -70,7 +77,7 @@ export default function ServiceCard({ service }: { service: Service }) {
         style={{ background: glowBackground }}
       />
 
-      <div className="relative">
+      <div className="relative z-10">
         <div className="flex items-start justify-between">
           <span className="font-display text-4xl font-light leading-none text-ink-faint md:text-5xl">
             {service.index}
@@ -88,7 +95,7 @@ export default function ServiceCard({ service }: { service: Service }) {
       </div>
 
       <div
-        className="relative mt-8 flex flex-wrap items-end justify-between gap-6 border-t pt-6"
+        className="relative z-10 mt-8 flex flex-wrap items-end justify-between gap-6 border-t pt-6"
         style={{ borderColor: "var(--border-soft)" }}
       >
         <div>
