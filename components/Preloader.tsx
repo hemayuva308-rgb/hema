@@ -12,14 +12,10 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const rafRef = useRef<number>();
 
-  // Stage sequencing: அனிமேஷன்கள் மற்றும் ஆடியோ முழுமையாக முடியுமாறு நேரம் தாராளமாக அதிகரிக்கப்பட்டுள்ளது
+  // Stage sequencing
   useEffect(() => {
     const t1 = setTimeout(() => setStage("welcome"), 260);
-    
-    // Welcome அனிமேஷன் முழுமையாக ஓடி முடிக்க 4.5 நொடிகள் (4500ms)
     const t2 = setTimeout(() => setStage("voice"), 260 + 4500);
-    
-    // Voice ஆடியோ முழுமையாகக் கேட்டு முடிக்க 5.5 நொடிகள் (5500ms)
     const t3 = setTimeout(() => setStage("done"), 260 + 4500 + 5500);
     
     return () => {
@@ -53,7 +49,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
         analyser.fftSize = 128;
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
-       dataArray = new Uint8Array(analyser.frequencyBinCount);
+        dataArray = new Uint8Array(analyser.frequencyBinCount);
       } catch {
         // autoplay blocked fallback
       }
@@ -68,7 +64,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
       ctx.fillStyle = "#0f172a";
 
       if (analyser && dataArray) {
-   analyser.getByteFrequencyData(dataArray as Uint8Array<ArrayBuffer>);
+        analyser.getByteFrequencyData(dataArray);
       }
 
       const gap = width / barCount;
@@ -115,7 +111,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
                 </div>
                 <motion.p
                   initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }} // இங்கிருந்த opacity: 3 எரர் சரிசெய்யப்பட்டுள்ளது
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 4, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
                   className="font-display text-3xl italic tracking-tight text-ink"
                 >
