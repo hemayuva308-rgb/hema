@@ -17,7 +17,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
     const t1 = setTimeout(() => setStage("welcome"), 260);
     const t2 = setTimeout(() => setStage("voice"), 260 + 4500);
     const t3 = setTimeout(() => setStage("done"), 260 + 4500 + 5500);
-    
+
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -64,7 +64,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
       ctx.fillStyle = "#0f172a";
 
       if (analyser && dataArray) {
-        analyser.getByteFrequencyData(dataArray);
+        analyser.getByteFrequencyData(dataArray as any);
       }
 
       const gap = width / barCount;
