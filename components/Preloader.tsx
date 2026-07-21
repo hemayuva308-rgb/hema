@@ -39,7 +39,7 @@ export default function Preloader({ children }: { children: React.ReactNode }) {
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
                 className="font-display text-3xl italic tracking-tight text-ink"
               >
-                Welcome
+                
               </motion.p>
             </div>
           </motion.div>
