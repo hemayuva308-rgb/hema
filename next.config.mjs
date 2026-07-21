@@ -1,4 +1,4 @@
-/** @type {import('next').NextType} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   // Ignore TypeScript errors during build
   typescript: {
@@ -10,4 +10,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
